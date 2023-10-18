@@ -13,11 +13,11 @@ fn main() {
         .expect("Invalid ID");
     let connection = &mut establish_connection();
 
-//    let real_uid = Uuid::parse_str( &id );
+    let real_uid = Uuid::parse_str( &id );
 
     let results = uuid_users
-	.filter( name.eq( id ) )
-	//.filter( user_uid.eq( real_uid ) )
+	//.filter( name.eq( id ) )
+        .filter( user_uid.eq( real_uid ) )
         .limit(5)
         .select(models::UuidUser::as_select())
         .load(connection)
