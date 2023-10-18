@@ -16,8 +16,7 @@ fn main() {
     let real_uid = Uuid::parse_str( &id );
 
     let results = uuid_users
-	//.filter( name.eq( id ) )
-        .filter( user_uid.eq( real_uid ) )
+        .filter( user_uid.eq( real_uid.unwrap() ) )
         .limit(5)
         .select(models::UuidUser::as_select())
         .load(connection)
